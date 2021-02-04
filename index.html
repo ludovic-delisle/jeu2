@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Jeu</title>
+</head>
+<body>
+<script src="https://d3js.org/d3.v5.js"></script>
+<div id = "board">
+    <script src="src/main.js"></script>
+    <script src="src/events.js"></script>
+    <script src="src/dot.js"></script>
+    <script src="src/bullets.js"></script>
+    <script src="https://d3js.org/d3.v5.js"></script>
+    <script>
+        let main_svg= d3.select("body")
+            .append("svg")
+            .attr("x", 0)
+            .attr("width", window.innerWidth)
+            .attr("y",0)
+            .attr("height", window.innerHeight)
+            .attr("id", "main_svg")
+            .style("background-color", "beige");
+        add_dot()
+
+        window.main = function () {
+            window.requestAnimationFrame(main);
+            event()
+            update()
+        };
+
+
+        main();
+
+    </script>
+</div>
+</body>
+</html>

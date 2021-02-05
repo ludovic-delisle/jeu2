@@ -1,8 +1,16 @@
+function create_rect_nodes(){
+    rects = d3.selectAll(".decor")
+
+
+}
+
 function create_col(nodes){
     var collisionForce = rectCollide()
         .size(function (d) { return [d.size, d.size] })
-    let width=window.innerWidth;
-    let height=window.innerHeight;
+
+    let svg = d3.select("#main_svg")
+    let width=svg.attr("width");
+    let height=svg.attr("height");
 
     var boxForce = boundedBox()
         .bounds([[0, 0], [width, height]])
@@ -163,29 +171,9 @@ function create_col(nodes){
     }
 
 
-    var px, py, vx, vy, offsetX, offsetY
 
-    function dragStarted(d) {
-        vx = 0
-        vy = 0
-        offsetX = (px = d3.event.x) - (d.fx = d.x)
-        offsetY = (py = d3.event.y) - (d.fy = d.y)
-    }
 
-    function dragged(d) {
-        vx = d3.event.x - px
-        vy = d3.event.y - py
-        d.fx = Math.max(Math.min((px = d3.event.x) - offsetX, width - d.size), 0)
-        d.fy = Math.max(Math.min((py = d3.event.y) - offsetY, height - d.size), 0)
-    }
 
-    function dragEnded(d) {
-        var vScalingFactor = maxVelocity / Math.max(Math.sqrt(vx * vx + vy * vy), maxVelocity)
-        d.fx = null
-        d.fy = null
-        d.vx = vx * vScalingFactor
-        d.vy = vy * vScalingFactor
-    }
 
     function constant(_) {
         return function () { return _ }

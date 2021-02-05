@@ -98,37 +98,74 @@ function try_to_shoot(){
         reload_frames=20
     }
 }
+k=0
+function update_dot() {
 
-function update_dot(){
-
-    if(reload_frames==0){
-        reloading=false
-    }
-    else{
+    if (reload_frames == 0) {
+        reloading = false
+    } else {
         reload_frames--
     }
 
     move_dot(main_dot.ax, main_dot.ay)
 
-    let dot=d3.select("#main_dot")
-    let rect=d3.select("#canon")
+    let dot = d3.select("#main_dot")
+    let rect = d3.select("#canon")
 
     let pos_x = main_dot.x
     let pos_y = main_dot.y
     let speed_x = main_dot.vx
     let speed_y = main_dot.vy
-    let new_pos_x= +pos_x + +speed_x
-    let new_pos_y= +pos_y + +speed_y
+    let new_pos_x = +pos_x + +speed_x
+    let new_pos_y = +pos_y + +speed_y
 
-    main_dot.x=new_pos_x
-    main_dot.y=new_pos_y
+    if(centered_x()) {
+        let displacement_x = main_dot.x - new_pos_x
+        if(!limit_x(displacement_x)) {
+            translate_world(displacement_x, 0)
+        }
+        else {
+            main_dot.x = new_pos_x
+        }
+    }
+    else {
+        main_dot.x = new_pos_x
+    }
+    if(centered_y()) {
+        let displacement_y = main_dot.y - new_pos_y
+        if(!limit_y(displacement_y)) {
+            translate_world(0, displacement_y)
+        }
+        else {
+            main_dot.y = new_pos_y
+        }
+    }
+    else {
+        main_dot.y = new_pos_y
+    }
 
-    dot.attr("cx", new_pos_x)
-        .attr("cy", new_pos_y)
+    dot.attr("cx", main_dot.x)
+        .attr("cy", main_dot.y)
 
-    rect.attr("x", - 30/4)
-        .attr("y", -30/4)
-        .attr("transform", "translate("+new_pos_x+","+new_pos_y+"), rotate("+main_dot.orientation+")")
+    rect.attr("x", -30 / 4)
+        .attr("y", -30 / 4)
+        .attr("transform", "translate(" + main_dot.x + "," + main_dot.y + "), rotate(" + main_dot.orientation + ")")
 
+}
 
+function centered_x(){
+    let svg = d3.select("#main_svg")
+
+    if(main_dot.x> svg.attr("width")/2 -20 && main_dot.x < svg.attr("width")/2 +20){
+        return true
+    }
+    return false
+}
+function centered_y(){
+    let svg = d3.select("#main_svg")
+
+    if(main_dot.y> svg.attr("height")/2 -20 && main_dot.y < svg.attr("height")/2 +20){
+        return true
+    }
+    return false
 }

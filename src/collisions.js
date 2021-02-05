@@ -1,10 +1,8 @@
-function create_rect_nodes(){
-    rects = d3.selectAll(".decor")
-
-
-}
 
 function create_col(nodes){
+
+    let rects = d3.selectAll(".decor").data(nodes)
+
     var collisionForce = rectCollide()
         .size(function (d) { return [d.size, d.size] })
 
@@ -12,6 +10,7 @@ function create_col(nodes){
     let width=svg.attr("width");
     let height=svg.attr("height");
 
+    console.log(width)
     var boxForce = boundedBox()
         .bounds([[0, 0], [width, height]])
         .size(function (d) { return [d.size, d.size] })

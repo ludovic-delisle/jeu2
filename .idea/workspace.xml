@@ -2,11 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="42abbff5-4e44-4328-b218-38aae8cbd937" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/collisions.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/collisions.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dot.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/dot.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/world.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/world.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,7 +57,7 @@
       <updated>1612359963738</updated>
       <workItem from="1612359965404" duration="2847000" />
       <workItem from="1612434535241" duration="5389000" />
-      <workItem from="1612442694424" duration="27315000" />
+      <workItem from="1612442694424" duration="30482000" />
     </task>
     <servers />
   </component>
@@ -81,7 +80,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/src/collisions.js</url>
-          <line>122</line>
+          <line>121</line>
           <properties lambdaOrdinal="-1" />
           <option name="timeStamp" value="2" />
         </line-breakpoint>

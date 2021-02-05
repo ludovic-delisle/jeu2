@@ -25,7 +25,8 @@
             .attr("id", "main_svg")
             .style("background-color", "beige");
         add_dot()
-        build_world()
+        nodes_ = build_world()
+        forceSimulation = create_col(nodes_)
 
         window.main = function () {
             window.requestAnimationFrame(main);

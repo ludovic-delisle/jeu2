@@ -40,12 +40,13 @@ world = [[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
          [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
          [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],]
 
-data = []
+nodes = []
 function build_world(){
     let canvas = d3.select("#main_svg")
 
     let width = 80
     let height = 80
+    let mass_0= 20000
 
     for(let i = 0; i< world.length ; i++){
         for(let j = 0; j< world[i].length; j++){
@@ -60,43 +61,42 @@ function build_world(){
                         .attr("height", height)
                         .attr("class", "decor 1")
 
-                    data.push({
+                    nodes.push({
                         x: width*j,
                         y: height*i,
-                        width: width,
-                        height: height})
+                        vx: 0,
+                        vy: 0,
+                        mass: mass_0,
+                        size: width,
+                        fx:width*j,
+                        fy:width*i
+                    })
                     break;
             }
         }
     }
     let rects = d3.selectAll(".decor")
-    rects.data(data)
-
+    rects.data(nodes)
+    return(nodes)
 }
 
 function limit_x(x){
-    if(data[0].x > -x){return true}
+    if(nodes[0].x > -x){return true}
 
     return false
 }
 function limit_y(x){
-    if(data[0].y > -x){return true}
+    if(nodes[0].y > -x){return true}
 
     return false
 }
 
 function translate_world(x, y){
 
-    data.forEach(element => element.x+=x)
-    data.forEach(element => element.y+=y)
+    nodes.forEach(element => element.fx+=x)
+    nodes.forEach(element => element.fy+=y)
+    nodes.forEach(element => element.x+=x)
+    nodes.forEach(element => element.y+=y)
 
-    let rects = d3.selectAll(".decor")
-
-    rects.data(data)
-
-
-
-    rects.attr("x", function(d){return d.x})
-        .attr("y", function(d){return d.y})
 
 }
